@@ -1,0 +1,1 @@
+/home/lubuntu/Documentos/_CODES/Rust_study/01-hello/hello_cargo/target/debug/crate2: /home/lubuntu/Documentos/_CODES/Rust_study/01-hello/hello_cargo/src/bin/crate2.rs /home/lubuntu/Documentos/_CODES/Rust_study/01-hello/hello_cargo/src/lib.rs

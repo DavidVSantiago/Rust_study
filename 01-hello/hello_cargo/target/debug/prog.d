@@ -1,0 +1,1 @@
+/home/lubuntu/Documentos/_CODES/Rust_study/01-hello/hello_cargo/target/debug/prog: /home/lubuntu/Documentos/_CODES/Rust_study/01-hello/hello_cargo/src/bin/prog.rs /home/lubuntu/Documentos/_CODES/Rust_study/01-hello/hello_cargo/src/lib.rs
