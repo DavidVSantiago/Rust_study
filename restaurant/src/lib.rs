@@ -13,5 +13,5 @@ mod front_of_house{
 pub fn comer_no_restaurante(){
     crate::front_of_house::hosting::add_lista_espera();
 
-    front_of_house::hosting::add_lista_espera();
+    front_of_house::hosting::add_lista_espera(); //
 }
