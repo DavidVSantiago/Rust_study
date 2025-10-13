@@ -1,6 +1,8 @@
+
+
 mod front_of_house{
-    mod hosting{
-        fn add_lista_espera(){}
+    pub mod hosting{ // expõe o módulo aos ancestrais
+        pub fn add_lista_espera(){} // expõe a função aos ancestrais
         fn sentar_mesa(){}
     }
     mod garcon{
@@ -10,8 +12,10 @@ mod front_of_house{
     }
 }
 
-pub fn comer_no_restaurante(){
+fn comer_no_restaurante(){
+    // invoca o caminho absoluto
     crate::front_of_house::hosting::add_lista_espera();
 
+    // usamos o caminho relativo (relativo ao escopo desta função - comer_no_restaurante)
     front_of_house::hosting::add_lista_espera(); //
 }
