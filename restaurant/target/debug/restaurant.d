@@ -1,0 +1,1 @@
+/home/lubuntu/Documentos/_CODES/Rust_study/restaurant/target/debug/restaurant: /home/lubuntu/Documentos/_CODES/Rust_study/restaurant/src/lib.rs /home/lubuntu/Documentos/_CODES/Rust_study/restaurant/src/main.rs
