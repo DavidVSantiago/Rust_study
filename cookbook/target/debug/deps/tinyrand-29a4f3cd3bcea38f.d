@@ -1,0 +1,11 @@
+/home/lubuntu/Documentos/_CODES/Rust_study/cookbook/target/debug/deps/tinyrand-29a4f3cd3bcea38f.d: /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/lib.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/counter.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/duration.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/mock_support.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/splitmix.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/xorshift.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/wyrand.rs
+
+/home/lubuntu/Documentos/_CODES/Rust_study/cookbook/target/debug/deps/libtinyrand-29a4f3cd3bcea38f.rmeta: /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/lib.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/counter.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/duration.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/mock_support.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/splitmix.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/xorshift.rs /home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/wyrand.rs
+
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/lib.rs:
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/counter.rs:
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/duration.rs:
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/mock_support.rs:
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/splitmix.rs:
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/xorshift.rs:
+/home/lubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinyrand-0.5.0/src/wyrand.rs:
