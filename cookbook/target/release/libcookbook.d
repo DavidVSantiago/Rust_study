@@ -1,0 +1,1 @@
+/home/lubuntu/Documentos/_CODES/Rust_study/cookbook/target/release/libcookbook.rlib: /home/lubuntu/Documentos/_CODES/Rust_study/cookbook/src/lib.rs /home/lubuntu/Documentos/_CODES/Rust_study/cookbook/src/modules/aleatorios.rs /home/lubuntu/Documentos/_CODES/Rust_study/cookbook/src/modules/mod.rs /home/lubuntu/Documentos/_CODES/Rust_study/cookbook/src/modules/ordenacao.rs

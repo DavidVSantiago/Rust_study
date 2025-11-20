@@ -5,3 +5,10 @@ edition = "2024"
 
 [dependencies]
 tinyrand = "0.5.0"
+
+[profile.release]
+opt-level = "z"     # Otimiza para tamanho ("s" também serve, "z" é mais agressivo)
+lto = true          # Link Time Optimization (remove código morto entre pacotes)
+codegen-units = 1   # Reduz paralelismo na compilação para otimizar melhor o todo
+panic = "abort"     # Remove lógica de "unwind" (stack trace), economiza MUITO espaço
+strip = true        # Remove símbolos de debug (equivalente ao comando 'strip')

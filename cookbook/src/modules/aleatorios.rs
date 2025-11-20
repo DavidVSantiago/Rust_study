@@ -1,4 +1,5 @@
-use tinyrand::{Rand,RandRange,StdRand};
+use std::time::{SystemTime, UNIX_EPOCH}; // para obter o relógio para o seed
+use tinyrand::{Rand, RandRange, Seeded, StdRand};
 
 // --- TIPOS PÚBLICOS ---
 
@@ -23,13 +24,21 @@ pub struct GeradorAleatorio {
 
 impl GeradorAleatorio {
     pub fn new() -> Self { // --- CONSTRUTOR ---
-        GeradorAleatorio { rng: StdRand::default(), } // Usa `StdRand::default()` para inicialização, que é tipicamente a semente baseada no tempo ou hardware.
+        
+        let start = SystemTime::now(); // Captura o tempo atual do sistema
+        let since_the_epoch = start
+            .duration_since(UNIX_EPOCH)
+            .expect("O tempo andou para trás"); // Tratamento de erro básico
+        let seed = since_the_epoch.as_nanos() as u64; // gera um seed único baseado no relógio
+
+        GeradorAleatorio { rng: StdRand::seed(seed), } // Usa `StdRand::default()` para inicialização, que é tipicamente a semente baseada no tempo ou hardware.
     }
     
     // ************************************************************************************************
     // --- API PÚBLICA ---
     // ************************************************************************************************
 
+    /// gera um numero aleatório em um intervalo informado
     pub fn rand(&mut self, i:Intervalo) -> u32 {
         match i {
             Intervalo::Total => self.rand_total(), // retorna o intervalo total
@@ -37,7 +46,7 @@ impl GeradorAleatorio {
         }
     }
 
-    /// gera uma senha 
+    /// gera uma senha com 'tam' caracteres e de tipos especificados por 'TipoSenha'
     pub fn rand_senha(&mut self, tam: usize, t: TipoSenha) -> String{
         let caracteres_permitidos: &[u8] = match t {
             TipoSenha::Numeros => &N_ARR,
