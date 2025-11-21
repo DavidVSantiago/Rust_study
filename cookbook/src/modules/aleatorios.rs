@@ -39,15 +39,15 @@ impl GeradorAleatorio {
     // ************************************************************************************************
 
     /// gera um numero aleatório em um intervalo informado
-    pub fn rand(&mut self, i:Intervalo) -> u32 {
+    pub fn gera_rand(&mut self, i:Intervalo) -> u32 {
         match i {
-            Intervalo::Total => self.rand_total(), // retorna o intervalo total
-            Intervalo::Entre(a, b) => self.rand_entre(a, b),
+            Intervalo::Total => self.gera_rand_total(), // retorna o intervalo total
+            Intervalo::Entre(a, b) => self.gera_rand_entre(a, b),
         }
     }
 
     /// gera uma senha com 'tam' caracteres e de tipos especificados por 'TipoSenha'
-    pub fn rand_senha(&mut self, tam: usize, t: TipoSenha) -> String{
+    pub fn gera_rand_senha(&mut self, tam: usize, t: TipoSenha) -> String{
         let caracteres_permitidos: &[u8] = match t {
             TipoSenha::Numeros => &N_ARR,
             TipoSenha::LetrasMaiusculas => &LMAI_ARR,
@@ -64,7 +64,7 @@ impl GeradorAleatorio {
         // percorre cada caracter para colocar os aleatórios
         for item in senha.iter_mut(){
             // obtem um indice dos caractere aleatórios permitidos
-            let indice:usize = self.rand(Intervalo::Entre(0, c_tam-1)) as usize;
+            let indice:usize = self.gera_rand(Intervalo::Entre(0, c_tam-1)) as usize;
             *item = caracteres_permitidos[indice] as char;
         }
         // converte para string e retorna
@@ -76,12 +76,12 @@ impl GeradorAleatorio {
     // ************************************************************************************************
 
     /// Retorna um número aleatório de 32 bits no intervalo total [0, u32::MAX].
-    fn rand_total(&mut self) -> u32 {
+    fn gera_rand_total(&mut self) -> u32 {
         self.rng.next_u32()
     }
     
     /// Retorna um número aleatório no intervalo [a, b] inclusivo.
-    fn rand_entre(&mut self, a: u32, b: u32) -> u32 {
+    fn gera_rand_entre(&mut self, a: u32, b: u32) -> u32 {
         if a > b {
             self.rng.next_range(b..a)
         } else {

@@ -1,4 +1,4 @@
-pub mod modules; // define o módudo 'modules', torna visível aqui o que está em modules/mod.rs
+pub mod modules; // define o módudo 'modules', torna visível (e vinculado) aqui o que está em modules/mod.rs
 
 /* reexporta para cima. para usar: *
  * 'package::aleatorios',

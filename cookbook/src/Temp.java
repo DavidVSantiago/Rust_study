@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Random;
 
     public class Temp {
@@ -59,13 +61,53 @@ import java.util.Random;
         TOTAL
     }
 
+    public static void heapSort(int[] A){
+        int size = A.length;
+        // construção do HEAP MÁXIMO
+        int p=(size/2)-1; // obtém o último pai
+        while (p>=0) {
+            siftDown(A,p,size);
+            p--;
+        }  
+
+        // isola o maior valor no final do array e reaproveita o heap
+        while(size>1){
+            swap(A, 0, --size);
+            siftDown(A, 0, size);
+        }
+    }
+
+    public static void siftDown(int[] A, int p, int size) {
+        while (p*2+1 < size) {
+            int f = p*2+1;
+            if (f+1 < size && A[f+1] > A[f]) f++;
+            if (A[f] > A[p]) swap(A,f,p);
+            else break;
+            p = f;
+        }
+    }
+
+    public static void swap(int[] A, int p1, int p2){
+        int aux = A[p1];
+        A[p1]=A[p2];
+        A[p2]=aux;
+    }
+
     public static void main(String[] args) {
 
+        int[] A = new int[10];
+        for (int i=0;i<A.length;i++) {
+            A[i] = rand(0, 1000);
+        }
+
+        System.out.print("Array antes: ");
+        for (int a : A){System.out.print(a+",");}   
         long start = System.nanoTime();
-        String senha = rand_senha(100,TipoSenha.TOTAL);
+        Arrays.sort(A);
         long end = System.nanoTime();
         long elapsed = (end-start);
-        System.out.println("Senha gerada: "+senha);
-        System.out.println("Tempo total gasto: "+elapsed+" ns");
+        System.out.print("\nArray depois: ");
+        for (int a : A){System.out.print(a+",");}   
+        System.out.println("\nTempo total gasto: "+elapsed+" ns");
     }
 }
