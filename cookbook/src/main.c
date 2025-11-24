@@ -87,31 +87,41 @@ char* rand_senha(int tam, TipoSenha t) {
     return senha;
 }
 
+int comparar_inteiros(const void *a, const void *b) {
+    int arg1 = *(const int *)a;
+    int arg2 = *(const int *)b;
+
+    if (arg1 < arg2) return -1;
+    if (arg1 > arg2) return 1;
+    return 0;
+}
+
 int main() {
+
+    const int ARRAY_SIZE = 10000000;
     // Inicializa a semente do gerador aleatório (apenas uma vez)
+    int *A = (int *)malloc(ARRAY_SIZE * sizeof(int));
+    if (A == NULL) {perror("Falha ao alocar memória");return 1;}
+
     srand(time(NULL));
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        A[i] = rand();  // rand() gera um número entre 0 e RAND_MAX
+    }
 
     struct timespec start, end;
 
-    // Captura o tempo inicial
     clock_gettime(CLOCK_MONOTONIC, &start);
-
-    // Gera a senha
-    char* senha = rand_senha(100, TOTAL);
-
-    // Captura o tempo final
+    qsort(
+        A,                        // Array a ser ordenado
+        ARRAY_SIZE,               // Número de elementos
+        sizeof(int),              // Tamanho de cada elemento
+        comparar_inteiros         // Ponteiro para a função de comparação
+    );
     clock_gettime(CLOCK_MONOTONIC, &end);
 
-    // Calcula o tempo decorrido em nanossegundos
-    long seconds = end.tv_sec - start.tv_sec;
-    long nanoseconds = end.tv_nsec - start.tv_nsec;
-    long elapsed = seconds * 1000000000L + nanoseconds;
+    long long elapsed_ns = (long long)(end.tv_sec - start.tv_sec) * 1000000000LL + (long long)(end.tv_nsec - start.tv_nsec);
+    double elapsed_s = (double)elapsed_ns / 1000000000.0;
 
-    printf("Senha gerada: %s\n", senha);
-    printf("Tempo total gasto: %ld ns\n", elapsed);
-
-    // Libera a memória alocada pelo malloc
-    free(senha);
-
+    printf("\nTempo total gasto: %lf segundos\n", elapsed_s);
     return 0;
 }

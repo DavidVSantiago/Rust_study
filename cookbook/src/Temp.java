@@ -95,19 +95,16 @@ import java.util.Random;
 
     public static void main(String[] args) {
 
-        int[] A = new int[10];
+        int[] A = new int[10_000_000];
         for (int i=0;i<A.length;i++) {
-            A[i] = rand(0, 1000);
+            A[i] = rand();
         }
-
-        System.out.print("Array antes: ");
-        for (int a : A){System.out.print(a+",");}   
+  
         long start = System.nanoTime();
         Arrays.sort(A);
         long end = System.nanoTime();
         long elapsed = (end-start);
-        System.out.print("\nArray depois: ");
-        for (int a : A){System.out.print(a+",");}   
-        System.out.println("\nTempo total gasto: "+elapsed+" ns");
+ 
+        System.out.println("\nTempo total gasto: "+elapsed/1_000_000_000.0+" segundos");
     }
 }
