@@ -1,0 +1,6 @@
+Procurando pela palavra 'Lo' 
+No arquivo '01.txt' 
+Loren ipsum dolor sit amet,
+ut labore et dolore magna aliqua.
+duis aute irure dolor in reprehenderit in voluptate 
+elit esse cillum dolore eu fugiat nulla pariatur.
