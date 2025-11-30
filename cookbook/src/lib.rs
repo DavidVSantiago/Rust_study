@@ -5,19 +5,18 @@ pub mod modules; // define o módudo 'modules', torna visível (e vinculado) aqu
  * ao invés de:
  * 'package::modules::aleatorios'*/
 pub use modules::aleatorios; // importa 'aleatorios.rs' para aqui
-pub use modules::ordenacao; // importa 'ordenacao.rs' para aqui
 pub use modules::arquivos; //
-pub use modules::textos; //
-pub use modules::tempo; //
-
+pub use modules::ordenacao; // importa 'ordenacao.rs' para aqui
+pub use modules::tempo;
+pub use modules::textos; // //
 
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
-    fn leitura_arquivo(){
-        let result= arquivos::ler_arquivo_utf8("proibida_para_mim.txt");
+    fn leitura_arquivo() {
+        let result = arquivos::ler_arquivo_utf8("proibida_para_mim.txt");
         assert!(result.is_ok());
-        eprintln!("{}",result.unwrap());
+        eprintln!("{}", result.unwrap());
     }
 }
