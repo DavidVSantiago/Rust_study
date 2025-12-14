@@ -9,6 +9,7 @@ pub use modules::arquivos; //
 pub use modules::ordenacao; // importa 'ordenacao.rs' para aqui
 pub use modules::tempo;
 pub use modules::textos; // //
+pub use modules::mat; // //
 
 #[cfg(test)]
 mod tests {

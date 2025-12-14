@@ -20,7 +20,7 @@
 /// # Retorno
 ///
 /// Retorna o número total de caracteres.
-pub  fn conta_caracteres_texto(texto: &str) -> usize{
+pub fn conta_caracteres_texto(texto: &str) -> usize{
     texto.chars().count()
 }
 
@@ -36,7 +36,7 @@ pub  fn conta_caracteres_texto(texto: &str) -> usize{
 /// # Retorno
 ///
 /// Retorna o número total de palavras encontradas.
-pub  fn conta_palavras_texto(texto: &str) -> usize{
+pub fn conta_palavras_texto(texto: &str) -> usize{
     texto.split_whitespace().count()
 }
 

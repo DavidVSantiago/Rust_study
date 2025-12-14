@@ -1,5 +1,6 @@
 use std::time::{SystemTime, UNIX_EPOCH}; // para obter o relógio para o seed
 use tinyrand::{Rand, RandRange, Seeded, StdRand};
+use crate::mat::calc_primo;
 
 /// Estrutura responsável pela **geração de números pseudoaleatórios**.
 ///
@@ -88,6 +89,53 @@ impl GeradorAleatorio {
         }
     }
 
+    /// **Gera** um número primo pseudoaleatório dentro de um intervalo especificado.
+    ///
+    /// Esta função utiliza a lógica de geração aleatória e a combina com uma rotina de
+    /// busca para garantir que o valor retornado seja um número primo. O processo de
+    /// busca é realizado incrementando o número aleatório inicial até que a função
+    /// `calc_primo` retorne verdadeiro.
+    ///
+    /// O intervalo é definido através do enum `Intervalo`, podendo assumir uma das
+    /// seguintes variações:
+    ///
+    /// * `Intervalo::Total` — gera um valor aleatório dentro de todo o intervalo válido do tipo `u32`
+    ///   e incrementa a partir desse ponto até encontrar o primeiro primo.
+    /// * `Intervalo::Entre(a, b)` — gera um valor aleatório dentro do intervalo inclusivo
+    ///   delimitado por `a` e `b`. A busca por um primo é feita por incremento, e se o
+    ///   limite superior (`b`) for atingido, a busca recomeça a partir de `a` (comportamento de 'wrap-around').
+    ///
+    /// **Nota sobre a Eficiência:** O número de iterações (`valor+=1`) é regido pela
+    /// densidade dos números primos, que é relativamente alta.
+    ///
+    /// # Argumentos
+    ///
+    /// * `i` - O intervalo no qual o número primo aleatório será gerado e a busca iniciada.
+    ///
+    /// # Retorno
+    ///
+    /// Retorna um valor primo do tipo `u32` encontrado após a busca iniciada a partir de
+    /// um ponto pseudoaleatório dentro do intervalo especificado.
+    ///
+    pub fn gera_rand_primo(&mut self, i: Intervalo) -> u32 {
+         match i {
+            Intervalo::Total => {
+                let mut valor = self.gera_rand_total();
+                while !calc_primo(valor) {valor+=1;}
+                valor
+            },
+            Intervalo::Entre(mut a, mut b) => {
+                if a>b {let aux=b; b=a; a=aux;} // troca a e b
+                let mut valor = self.gera_rand_entre(a, b+1);
+                while !calc_primo(valor) {
+                    valor+=1;
+                    if valor>=b {valor =a;}
+                }
+                valor
+            },
+        }
+    }
+
     /// **Gera** uma senha pseudoaleatória com base em um conjunto de caracteres permitido.
     ///
     /// Esta função constrói uma string de tamanho fixo contendo caracteres escolhidos
@@ -144,11 +192,7 @@ impl GeradorAleatorio {
 
     /// Retorna um número aleatório no intervalo [a, b] inclusivo.
     fn gera_rand_entre(&mut self, a: u32, b: u32) -> u32 {
-        if a > b {
-            self.rng.next_range(b..a)
-        } else {
-            self.rng.next_range(a..b)
-        }
+        self.rng.next_range(a..b)
     }
 }
 

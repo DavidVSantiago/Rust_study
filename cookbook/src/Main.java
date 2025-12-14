@@ -12,63 +12,28 @@ public class Main {
     public Main(){
         Cronometro crono = new Cronometro();
 
-        String nomeArquivo = "livro.txt";
-        String result;
-
-        try {
-            result = lerArquivoUTF8(nomeArquivo);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            System.exit(1);
-            return;
-        }
-        String ocorrencia = "Et";
+        int num = 10_000_000;
+        int cont=0;
         crono.marcarInicio();
-        long qtd = contaOcorrenciasTexto(result, ocorrencia, true);
+        for(int i=1;i<num;i++){
+            if (calc_primo(i)) cont+=1;
+        }
         crono.marcarFim();
-
-        System.out.println(qtd + " palavras");
-        System.out.println("O programa demorou " + crono.obterTempoSegundos() + " segundos!");
-        System.out.println("O programa demorou " + crono.obterTempoMili() + " milisegundos!");
-        System.out.println("O programa demorou " + crono.obterTempoNano() + " nanosegundos!");
+        System.out.println("Entre 1 e "+num+" existem "+cont+" numeros primos");
+        System.out.println("Processo v1 realizado em "+crono.obterTempoSegundos()+" segundos!");
     }
 
-    // === Equivalente ao ler_arquivo_utf8 ===
-    public static String lerArquivoUTF8(String nomeArquivo) throws IOException {
-        return Files.readString(Paths.get(nomeArquivo), StandardCharsets.UTF_8);
-    }
-
-    // === Equivalente ao conta_palavras_texto ===
-    public static long contaPalavrasTexto(String texto) {
-        if (texto == null || texto.trim().isEmpty()) {
-            return 0;
+    public boolean calc_primo(int num){
+        if (num <= 3) { return num > 1; } // false p/ 1 e true p/ 2 ou 3
+        if (num%2 == 0 || num%3 == 0) {return false; } // falso p os multiplos de 2 ou 3
+        int sup = (int)Math.sqrt(num);
+        // Otimização 6k +/- 1
+        int i = 5; // começa a verificar a partir de 5, pois já verificou 2 e 3
+        while (i <= sup){
+            if (num%i==0 || num%(i+2)==0) {return  false;}
+            i+=6; // salta os multiplos de 2 e 3
         }
-        return texto.trim().split("\\s+").length;
-    }
-
-    // === Equivalente ao conta_ocorrencias_texto ===
-    public static int contaOcorrenciasTexto(String textoCompleto,
-                                        String ocorrencia,
-                                        boolean ignorarCase) {
-
-        if (textoCompleto == null || ocorrencia == null || ocorrencia.isEmpty()) {
-            return 0;
-        }
-
-        if (ignorarCase) {
-            textoCompleto = textoCompleto.toLowerCase();
-            ocorrencia = ocorrencia.toLowerCase();
-        }
-
-        int count = 0;
-        int index = 0;
-
-        while ((index = textoCompleto.indexOf(ocorrencia, index)) != -1) {
-            count++;
-            index += ocorrencia.length(); // comportamento igual ao matches: não sobrepõe
-        }
-
-        return count;
+        return true;
     }
 
     public class Cronometro {
